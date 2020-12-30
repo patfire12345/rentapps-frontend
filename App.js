@@ -6,6 +6,7 @@ import Navigator from './routes/drawer';
 const getFonts = () => Font.loadAsync({
     'nunito-regular': require('./assets/fonts/Nunito-Regular.ttf'),
     'nunito-bold': require('./assets/fonts/Nunito-SemiBold.ttf'),
+    'patrick-hand': require('./assets/fonts/PatrickHandSC-Regular.ttf'),
   });
 
 

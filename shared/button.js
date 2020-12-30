@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
 
         color: "white",
 
-        // fontFamily: "Patrick Hand SC",
+        fontFamily: "patrick-hand",
         fontStyle: "normal",
         fontWeight: "normal",
         fontSize: 24,

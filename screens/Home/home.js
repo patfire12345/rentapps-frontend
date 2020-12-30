@@ -172,41 +172,39 @@ export default function Home({ navigation }) {
     if (userState && userState.user.userDetails.tenant) {
       return (
         <View>
-          <MaterialIcons 
-              name='help' 
-              size={24} 
-              style={styles.modalToggle}
-              onPress={() => navigation.navigate('About', {
-                user: userState,
-                pets: userState.pets,
-                email: userEmail,
-                address: userState.user.userDetails.resAddress,
-                duration: userState.user.userDetails.resDuration,
-                landlordName: userState.user.userDetails.landlordName,
-                landlordEmail: userState.user.userDetails.landlordEmail,
-                landlordPhone: userState.user.userDetails.landlordPhone,
-                model: userState.user.userDetails.vehicleModel,
-                make: userState.user.userDetails.vehicleMake,
-                year: userState.user.userDetails.vehicleYear,
-                license: userState.user.userDetails.vehicleLicense,
-                employment: userState.user.userDetails.employment,
-                university: userState.user.userDetails.university,
-                universityLocation: userState.user.userDetails.universityLocation,
-                studyYear: userState.user.userDetails.studyYear,
-                occupation: userState.user.userDetails.occupation,
-                company: userState.user.userDetails.company,
-                companyAddress: userState.user.userDetails.companyAddress,
-                companyPhone: userState.user.userDetails.companyPhone,
-                position: userState.user.userDetails.position,
-                occupationDuration: userState.user.userDetails.occupationDuration,
-                occupationSupervisor: userState.user.userDetails.occupationSupervisor,
-                refName: userState.user.userDetails.refName,
-                refEmail: userState.user.userDetails.refEmail,
-                refPhone: userState.user.userDetails.refPhone,
-              })} 
-            />
-          <MaterialIcons 
-            name='add' 
+          <FlatButton
+            text='My Application'
+            style={styles.modalToggle}
+            onPress={() => navigation.navigate('About', {
+              user: userState,
+              pets: userState.pets,
+              email: userEmail,
+              address: userState.user.userDetails.resAddress,
+              duration: userState.user.userDetails.resDuration,
+              landlordName: userState.user.userDetails.landlordName,
+              landlordEmail: userState.user.userDetails.landlordEmail,
+              landlordPhone: userState.user.userDetails.landlordPhone,
+              model: userState.user.userDetails.vehicleModel,
+              make: userState.user.userDetails.vehicleMake,
+              year: userState.user.userDetails.vehicleYear,
+              license: userState.user.userDetails.vehicleLicense,
+              employment: userState.user.userDetails.employment,
+              university: userState.user.userDetails.university,
+              universityLocation: userState.user.userDetails.universityLocation,
+              studyYear: userState.user.userDetails.studyYear,
+              occupation: userState.user.userDetails.occupation,
+              company: userState.user.userDetails.company,
+              companyAddress: userState.user.userDetails.companyAddress,
+              companyPhone: userState.user.userDetails.companyPhone,
+              position: userState.user.userDetails.position,
+              occupationDuration: userState.user.userDetails.occupationDuration,
+              occupationSupervisor: userState.user.userDetails.occupationSupervisor,
+              refName: userState.user.userDetails.refName,
+              refEmail: userState.user.userDetails.refEmail,
+              refPhone: userState.user.userDetails.refPhone,
+            })} />
+          <FlatButton
+            text='Find a Listing' 
             size={24} 
             style={styles.modalToggle}
             onPress={() => setModalTenantOpen(true)} 
@@ -301,7 +299,7 @@ export default function Home({ navigation }) {
         <Register modalFunction={{off: modalOff3, login: modalOn2}}/>
       </Modal>
 
-      <Text>{welcomeMessage}</Text>
+      <Text style={globalStyles.titleText}>Welcome</Text>
 
       {tenantUI()}
 

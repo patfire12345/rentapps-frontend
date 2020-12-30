@@ -6,9 +6,33 @@ export const globalStyles = StyleSheet.create({
         padding: 20
     },
     titleText: {
-        fontFamily: 'nunito-bold',
-        fontSize: 18,
-        color: '#333',
+        fontFamily: 'ropasans',
+        fontStyle: 'italic',
+        fontWeight: 'normal',
+        fontSize: 36,
+        lineHeight: 39,
+        color: '#000000',
+
+        display: 'flex',
+        alignItems: 'center',
+
+        // position: absolute;
+        // left: 34.44%;
+        // right: 28.89%;
+        // top: 8.12%;
+        // bottom: 85.78%;
+
+        // font-family: Ropa Sans;
+        // font-style: italic;
+        // font-weight: normal;
+        // font-size: 36px;
+        // line-height: 39px;
+        // /* identical to box height */
+
+        // display: flex;
+        // align-items: center;
+
+        // color: #000000;
     },
     paragraph: {
         marginVertical: 8,

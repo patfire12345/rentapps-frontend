@@ -7,6 +7,7 @@ const getFonts = () => Font.loadAsync({
     'nunito-regular': require('./assets/fonts/Nunito-Regular.ttf'),
     'nunito-bold': require('./assets/fonts/Nunito-SemiBold.ttf'),
     'patrick-hand': require('./assets/fonts/PatrickHandSC-Regular.ttf'),
+    'ropasans': require('./assets/fonts/RopaSans-Regular.ttf'),
   });
 
 

@@ -7,6 +7,7 @@ import ReviewDetails from '../screens/Advertisements/reviewDetails';
 import About from "../screens/Tenants/about";
 import AboutForLandlord from "../screens/Tenants/aboutForLandlord";
 import Header from '../shared/header';
+import {globalStyles} from '../styles/global';
 
 
 
@@ -28,9 +29,14 @@ const screens = {
     },
     About: {
         screen: About,
-        navigationOptions: {
-            title: "About",
-        }
+        navigationOptions: 
+            // title: "Tenant Application",
+            // headerStyle: { fontFamily: 'ropasans'},
+            ({navigation}) => {
+                return {
+                    headerTitle: () => <Header navigation={navigation} title='Tenant Application'/>,
+                }
+            } 
     },
     AboutForLandlord: {
         screen: AboutForLandlord,

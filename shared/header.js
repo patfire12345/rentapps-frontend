@@ -9,16 +9,8 @@ export default function Header({ title, navigation }) {
   }
 
   return (
-    // <ImageBackground source={require('../assets/game_bg.png')} style={styles.header}>
-    //   <MaterialIcons name='menu' size={28} onPress={openMenu} style={styles.icon} />
-    //   <View style={styles.headerTitle}>
-    //     <Image source={require('../assets/heart_logo.png')} style={styles.headerImage} />
-    //     <Text style={styles.headerText}>{title}</Text>
-    //   </View>
-    // </ImageBackground>
-
     <View style={styles.headerTitle}>
-         <Image source={require('../assets/heart_logo.png')} style={styles.headerImage} />
+         {/* <Image source={require('../assets/heart_logo.png')} style={styles.headerImage} /> */}
          <Text style={styles.headerText}>{title}</Text>
     </View>
   );
@@ -33,7 +25,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   headerText: {
-    fontWeight: 'bold',
+    fontWeight: 'normal',
+    fontFamily: 'ropasans',
+    fontStyle: 'italic',
     fontSize: 20,
     color: '#333',
     letterSpacing: 1,

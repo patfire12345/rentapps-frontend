@@ -64,6 +64,7 @@ export default function Welcome({modalFunction}) {
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <View style={globalStyles.container}>
+                <Text style={globalStyles.titleText}>RentApps</Text>
                 <Formik
                     initialValues={{ username: "", password: "" }}
                     validationSchema={reviewSchema}

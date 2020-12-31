@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, Image, Button, TextInput, TouchableOpacity } fr
 import { globalStyles,images } from '../../styles/global';
 import Card from '../../shared/card';
 import ReviewDetails from './reviewDetails';
+import FlatButton from '../../shared/button';
 import config from '../../config';
 
 
@@ -10,17 +11,20 @@ export default function ReviewDetailsApplication({ searchReview,navigation,modal
 
     const [key, setKey] = useState("");
     const [foundPost, setFoundPost] = useState(false);
-    const [response, setResponse] = useState("Searching..."); 
+    const [response, setResponse] = useState(""); 
     const [responseCounter, setResponseCounter] = useState(0);
     
     const [postTitle,setPostTitle] = useState("Title");
     const [postBody,setPostBody] = useState("Body");
     const [postKey,setPostKey] = useState("Key");
 
+    const [disabledApply, setDisabledApply] = useState(false);
+
     const IP = config.IP;
 
     const searchForReview = async (key) => {
         setFoundPost(false);
+        setDisabledApply(false);
         const user = await searchReview(key);
 
         if (!user) {
@@ -30,10 +34,17 @@ export default function ReviewDetailsApplication({ searchReview,navigation,modal
 
         else {
             setFoundPost(true);
+            setResponse("");
 
             setPostTitle(user.review.title);
             setPostBody(user.review.body);
             setPostKey(user.review.key);
+
+            for (var i = 0; i < user.review.applications.length; i++) {
+                if (user.review.applications[i].email ===  email) {
+                    setDisabledApply(true);
+                }
+            }
         }
     }
 
@@ -56,6 +67,8 @@ export default function ReviewDetailsApplication({ searchReview,navigation,modal
             }
             
             const user = await response.json();
+
+            setDisabledApply(true);
             
             return user;
       
@@ -68,15 +81,17 @@ export default function ReviewDetailsApplication({ searchReview,navigation,modal
     const postAd = (title,body,key) => {
         if (foundPost) {
             return (
-                <TouchableOpacity onPress={() => {
-                    navigation.navigate('ReviewDetails', {title,body,key});
-                    modalTenantOff();
-                }}>
-                    <Card>
-                        <Text style={globalStyles.titleText}>{ title }</Text>
-                    </Card>
-                    <Button title="Apply" onPress={() => {applyPost()}}></Button>
-                </TouchableOpacity>
+                <View>
+                    <TouchableOpacity onPress={() => {
+                        navigation.navigate('ReviewDetails', {title,body,key});
+                        modalTenantOff();
+                    }}>
+                        <Card>
+                            <Text style={globalStyles.titleText}>{ title }</Text>
+                        </Card>
+                    </TouchableOpacity>
+                    <FlatButton text="Apply" onPress={() => {applyPost()}} disabled={disabledApply}/>   
+                </View>
             );
         }
     }
@@ -86,7 +101,7 @@ export default function ReviewDetailsApplication({ searchReview,navigation,modal
 
             <TextInput placeholder="Enter your code here: " value={key} onChangeText={key => setKey(key)}></TextInput>
 
-            <Button title="Submit" onPress={() => searchForReview(key)}/>
+            <FlatButton text="Submit" onPress={() => searchForReview(key)}/>
 
             <Text>{response}</Text>
 

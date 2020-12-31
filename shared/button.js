@@ -3,11 +3,16 @@ import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
 // import {useFonts, Roboto_400Regular} from "@expo-google-fonts/roboto";
 
 
-export default function FlatButton({ text, onPress }) {
+export default function FlatButton({ text, onPress, disabled, flex, flexDirection, justifyContent }) {
     return (
-        <TouchableOpacity onPress={onPress}>
+        <TouchableOpacity onPress={onPress} disabled={disabled}>
             <View style={styles.button}>
-                <Text style={styles.buttonText}> {text} </Text>
+                <Text 
+                    style={
+                        styles.buttonText
+                    }> 
+                    {text} 
+                </Text>
             </View>
         </TouchableOpacity>
     )

@@ -175,6 +175,8 @@ export default function Home({ navigation }) {
           <FlatButton
             text='My Application'
             style={styles.modalToggle}
+            flexDirection="row"
+            flex={1}
             onPress={() => navigation.navigate('About', {
               user: userState,
               pets: userState.pets,
@@ -205,7 +207,8 @@ export default function Home({ navigation }) {
             })} />
           <FlatButton
             text='Find a Listing' 
-            size={24} 
+            flexDirection="row"
+            flex={1}
             style={styles.modalToggle}
             onPress={() => setModalTenantOpen(true)} 
           />
@@ -217,21 +220,22 @@ export default function Home({ navigation }) {
     if (userState && !userState.user.userDetails.tenant) {
       return (
         <View>
-          <MaterialIcons 
-            name='add' 
-            size={24} 
+          <FlatButton
+            text='Create a New Listing'
             style={styles.modalToggle}
             onPress={() => setModalLandlordOpen(true)} 
           />
           
           <FlatList data={reviews} renderItem={({ item,index }) => (
-            <TouchableOpacity onPress={() => navigation.navigate('ReviewDetails', {title: item.title, body: item.body, key: item.key, 
-            applications: item.applications})}>
-              <Card>
-                <Text style={globalStyles.titleText}>{ item.title }</Text>
-              </Card>
-              <Button title='Delete' onPress={() => deleteReview(index)}/>
-            </TouchableOpacity>
+            <View>
+              <TouchableOpacity onPress={() => navigation.navigate('ReviewDetails', {title: item.title, body: item.body, key: item.key, 
+              applications: item.applications})}>
+                <Card>
+                  <Text style={globalStyles.titleText}>{ item.title }</Text>
+                </Card>
+              </TouchableOpacity>
+              <FlatButton text='Delete' onPress={() => deleteReview(index)}/>
+            </View>
           )} />
         </View>
       );

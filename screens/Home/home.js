@@ -41,21 +41,15 @@ export default function Home({ navigation }) {
   }
 
   const changeReviews = (review) => {
-    // console.log(review);
-    // if (!reviewsInitialized) {
       setReviews((currentReviews) => {
         return currentReviews ? [...currentReviews,review] : [review] 
       })
-    // }
   }
 
   const changePostNumber = (postNum) => {
     setPostNumber(postNum);
   }
 
-  // const reviewsAreInitialized = () => {
-  //   setReviewsInitialized(true);
-  // }
 
   const addReview = async (review) => {
     review.key = userState.user.userDetails.userKey + postNumber;
@@ -93,23 +87,14 @@ export default function Home({ navigation }) {
 
   const deleteReview = async (index) => {
     if (reviews.length == 1) {
-      console.log("First");
-      console.log(reviews.length);
-      console.log(index);
       setReviews([]);
     }
 
     else if (index === reviews.length-1) {
-      console.log("Second");
-      console.log(reviews.length);
-      console.log(index);
       setReviews(reviews.slice(0,index));
     }
 
     else{
-      console.log("Third");
-      console.log(reviews.length);
-      console.log(index);
       setReviews(reviews.slice(0,index).concat(reviews.slice(index+1,reviews.length)));
     }
 
@@ -306,6 +291,11 @@ export default function Home({ navigation }) {
       <Text style={globalStyles.titleText}>Welcome</Text>
 
       {tenantUI()}
+
+      <FlatButton 
+        text = "How Does It Work?"
+        onPress = {() => navigation.navigate("WhatIs")}
+      />
 
       <FlatButton 
         text = "Logout"

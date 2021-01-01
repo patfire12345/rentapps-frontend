@@ -6,6 +6,7 @@ import ReviewDetails from '../screens/Advertisements/reviewDetails';
 // import Register from "../screens/register";
 import About from "../screens/Tenants/about";
 import AboutForLandlord from "../screens/Tenants/aboutForLandlord";
+import WhatIs from "../screens/Home/whatIs";
 import Header from '../shared/header';
 import {globalStyles} from '../styles/global';
 
@@ -14,10 +15,11 @@ import {globalStyles} from '../styles/global';
 const screens = {
     Home: {
         screen: Home,
-        navigationOptions: ({navigation}) => {
-            return {
-                headerTitle: () => <Header navigation={navigation} title='Home'/>,
-            }
+        navigationOptions: 
+            ({navigation}) => {
+                return {
+                    headerTitle: () => <Header navigation={navigation} title='Home'/>,
+                }
         }
     },
     ReviewDetails: {
@@ -30,8 +32,6 @@ const screens = {
     About: {
         screen: About,
         navigationOptions: 
-            // title: "Tenant Application",
-            // headerStyle: { fontFamily: 'ropasans'},
             ({navigation}) => {
                 return {
                     headerTitle: () => <Header navigation={navigation} title='Tenant Application'/>,
@@ -40,10 +40,22 @@ const screens = {
     },
     AboutForLandlord: {
         screen: AboutForLandlord,
-        navigationOptions: {
-            title: "AboutForLandlord"
-        }
+        navigationOptions: 
+            ({navigation}) => {
+                return {
+                    headerTitle: () => <Header navigation={navigation} title='Tenant Application'/>,
+                }
+            } 
     },
+    WhatIs: {
+        screen: WhatIs,
+        navigationOptions:
+            ({navigation}) => {
+                return {
+                    headerTitle: () => <Header navigation={navigation} title='How Does It Work?'/>,
+                }
+            }
+    }
 }
 
 const HomeStack = createStackNavigator(screens, {

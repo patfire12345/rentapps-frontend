@@ -20,10 +20,8 @@ export default function ReferenceSection({functions}) {
             <View style={globalStyles.container}>
                 <Formik 
                     initialValues={{ name: "", phone: "", email: "",}}
-                    //validationSchema={reviewSchema}
                     onSubmit={async (values) => {
                         await functions.addRefInfo(values);
-                        console.log(values);
                         functions.closeFunction();
                         
                     }}

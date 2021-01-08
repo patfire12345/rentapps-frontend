@@ -28,7 +28,6 @@ export default function StatusSection({functions}) {
 
     const unemployed = () => {
         functions.closeFunction();
-        //functions.openFunction();
         functions.becomeUnemployed();
     }
 
@@ -40,7 +39,6 @@ export default function StatusSection({functions}) {
                         initialValues={{ school: "", location: "", year: "",}}
                         //validationSchema={reviewSchema}
                         onSubmit={async (values) => {
-                            console.log(values);
                             await functions.changeStatus(values,"student");
                             functions.closeFunction();
                             //functions.openFunction();
@@ -92,13 +90,9 @@ export default function StatusSection({functions}) {
                 <View style={globalStyles.container}>
                     <Formik 
                         initialValues={{ job: "", company: "", address: "", phone: "", title: "", duration: "", employer: "",}}
-                        //validationSchema={reviewSchema}
                         onSubmit={async (values) => {
-                            console.log(values);
                             await functions.changeStatus(values,"employee");
                             functions.closeFunction();
-                            //functions.openFunction();
-                            
                         }}
                     >
                         {(props) => (

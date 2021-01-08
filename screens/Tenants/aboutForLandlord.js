@@ -46,8 +46,6 @@ export default function About({ navigation }) {
             }
             
             const user = await response.json();
-      
-            console.log(user);
             
             return user;
       

@@ -14,17 +14,6 @@ export default function About({ navigation }) {
     const [email, setEmail] = useState(navigation.getParam('email'));
     const IP = config.IP;
 
-    const hasPetsNow = async () => {
-        try {
-            setHasPets("Has pets");
-        }
-
-        catch (err) {
-            console.log(err);
-        }
-        
-    }
-
     const openPetModal = () => {
         setPetModal(true);
     }
@@ -52,8 +41,6 @@ export default function About({ navigation }) {
             }
             
             const user = await response.json();
-
-            console.log(user);
             
             return user;
 
@@ -115,8 +102,6 @@ export default function About({ navigation }) {
             }
             
             const user = await response.json();
-
-            console.log(user);
             
             return user;
 
@@ -225,22 +210,15 @@ export default function About({ navigation }) {
     const changeStatus = async (status,employment) => {
         status.key = Math.random().toString();
 
-        console.log("Student status:" + isStudent);
-        console.log("Employee status:" + isEmployed);
-
         if (isStudent) {
-            console.log("student");
             changeStudent(status);
         }
 
         else if (isEmployed) {
-            console.log("emp");
             changeEmployee(status);
         }
 
         try {
-            console.log("Employment: 2");
-            console.log(employment);
             const response = await fetch(IP + "/employment", 
                 {
                 method: "POST", 
@@ -260,8 +238,6 @@ export default function About({ navigation }) {
             }
             
             const user = await response.json();
-
-            console.log(user);
             
             return user;
 
@@ -376,8 +352,6 @@ export default function About({ navigation }) {
             }
             
             const user = await response.json();
-
-            console.log(user);
             
             return user;
 

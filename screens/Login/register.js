@@ -48,14 +48,9 @@ export default function Register({modalFunction}) {
                 throw new Error(response.messages)
             }
             const user = await response.json();
-
-            console.log(user);
             
             return true;
-            // return {
-            //     user: user,
-            //     verified: true
-            // }
+
         } catch(error) {
             console.log(error);
             return false;
@@ -76,18 +71,8 @@ export default function Register({modalFunction}) {
                     onSubmit={async (values,action) => {
 
                         if (await addInfo( values.email, values.password, values.firstname, values.lastname, tenant )) {
-                            console.log("registered");
                             modalFunction.off();
                             modalFunction.login();
-                        }
-                        
-
-                        if (tenant) {
-                            console.log("Tenant")
-                        }
-
-                        else {
-                            console.log("Landlord")
                         }
                     }}
                 >

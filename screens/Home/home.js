@@ -29,7 +29,6 @@ export default function Home({ navigation }) {
 
   const storeUser = (message) => {
     setuserState(message);
-    console.log(message);
   }
 
   const changeReviews = (review) => {
@@ -134,8 +133,6 @@ export default function Home({ navigation }) {
       }
       
       const user = await response.json();
-
-      console.log(user);
       
       return user;
 

@@ -61,12 +61,9 @@ export default function ResidenceSection({functions}) {
             <View style={globalStyles.container}>
                 <Formik 
                     initialValues={{ address: "", startMonth: "", startYear: "", endMonth: "", endYear: "", landlordName: "", landlordEmail: "", landlordPhone: ""}}
-                    //validationSchema={reviewSchema}
                     onSubmit={async (values) => {
-                        console.log(values);
                         await functions.addResInfo(values);
                         functions.closeFunction();
-                        //functions.openFunction();
                     }}
                 >
                     {(props) => (

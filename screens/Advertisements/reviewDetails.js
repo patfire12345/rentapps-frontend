@@ -6,13 +6,8 @@ import Card from '../../shared/card';
 
 export default function ReviewDetails({ navigation }) {
 
-    // const rating = navigation.getParam("rating");
-
     const emails = navigation.getParam("applications");
-    // const emails = [{email:"toad@google.ca", id: "1"}];
-    // console.log(emails);
     const [userState,setUserState] = useState(navigation.getParam("userState"));
-    // const userState = useState(navigation.getParam("userState"));
 
     return (
         <View style={globalStyles.container}>

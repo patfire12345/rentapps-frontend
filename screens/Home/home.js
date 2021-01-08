@@ -15,24 +15,16 @@ export default function Home({ navigation }) {
   const [modalTenantOpen, setModalTenantOpen] = useState(false);
   const [modalOpen2, setModalOpen2] = useState(true);
   const [modalOpen3, setModalOpen3] = useState(false);
+  const [modalOpen4, setModalOpen4] = useState(false);
   const [reviews, setReviews] = useState([]);
-  // const [reviewsInitialized, setReviewsInitialized] = useState(false);
-  const [welcomeMessage,setWelcomeMessage] = useState("Hi!");
   const [userState, setuserState] = useState(false);
   const [postNumber, setPostNumber] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const IP = config.IP;
 
-  // useEffect(() => {
-  //   let isMounted = true;
-  // })
 
   const changeEmail = (email) => {
     setUserEmail(email);
-  }
-
-  const changeWelcomeMessage = (message) => {
-    setWelcomeMessage("Hi, " + message);
   }
 
   const storeUser = (message) => {
@@ -156,7 +148,7 @@ export default function Home({ navigation }) {
   const tenantUI = () => {
     if (userState && userState.user.userDetails.tenant) {
       return (
-        <View>
+        <View style={{flex: 1, flexDirection: "row", justifyContent: "space-evenly"}}>
           <FlatButton
             text='My Application'
             style={styles.modalToggle}
@@ -204,24 +196,21 @@ export default function Home({ navigation }) {
 
     if (userState && !userState.user.userDetails.tenant) {
       return (
-        <View>
-          <FlatButton
-            text='Create a New Listing'
-            style={styles.modalToggle}
-            onPress={() => setModalLandlordOpen(true)} 
-          />
-          
-          <FlatList data={reviews} renderItem={({ item,index }) => (
-            <View>
-              <TouchableOpacity onPress={() => navigation.navigate('ReviewDetails', {title: item.title, body: item.body, key: item.key, 
-              applications: item.applications})}>
-                <Card>
-                  <Text style={globalStyles.titleText}>{ item.title }</Text>
-                </Card>
-              </TouchableOpacity>
-              <FlatButton text='Delete' onPress={() => deleteReview(index)}/>
-            </View>
-          )} />
+        <View style={{flex: 1, flexDirection: "row", justifyContent: "space-evenly"}}>
+          <View>
+            <FlatButton
+              text='My Listings'
+              style={styles.modalToggle}
+              onPress={() => setModalOpen4(true)}
+            />
+          </View>
+          <View>
+            <FlatButton
+              text='Create a New Listing'
+              style={styles.modalToggle}
+              onPress={() => setModalLandlordOpen(true)} 
+            />
+          </View>
         </View>
       );
     }
@@ -247,6 +236,14 @@ export default function Home({ navigation }) {
 
   const modalOn3 = () => {
     setModalOpen3(true);
+  }
+
+  const modalOff4 = () => {
+    setModalOpen4(false);
+  }
+
+  const modalOn4 = () => {
+    setModalOpen4(true);
   }
 
   return (
@@ -281,27 +278,59 @@ export default function Home({ navigation }) {
       </Modal>
 
       <Modal visible={modalOpen2} animationType='slide'>
-        <Welcome modalFunction={{off: modalOff2, on: modalOn3, changeWelcomeMessage, storeUser, changeEmail, changeReviews, changePostNumber}} />
+        <Welcome modalFunction={{off: modalOff2, on: modalOn3, storeUser, changeEmail, changeReviews, changePostNumber}} />
       </Modal>
 
       <Modal visible={modalOpen3} animationType='slide'>
+        <MaterialIcons 
+          name='close'
+          size={24} 
+          style={{...styles.modalToggle, ...styles.modalClose}} 
+          onPress={() => {setModalOpen3(false); setModalOpen2(true);}} 
+        />
         <Register modalFunction={{off: modalOff3, login: modalOn2}}/>
       </Modal>
 
-      <Text style={globalStyles.titleText}>Welcome</Text>
+      <Modal visible={modalOpen4} animationType='slide'>
+        <MaterialIcons 
+          name='close'
+          size={24} 
+          style={{...styles.modalToggle, ...styles.modalClose}} 
+          onPress={() => setModalOpen4(false)} 
+        />
+        <FlatList data={reviews} renderItem={({ item,index }) => (
+          <View>
+            <TouchableOpacity onPress={() => {
+              navigation.navigate('ReviewDetails', {title: item.title, body: item.body, key: item.key, 
+              applications: item.applications});
+              setModalOpen4(false);
+            }}>
+              <Card>
+                <Text style={globalStyles.titleText}>{ item.title }</Text>
+              </Card>
+            </TouchableOpacity>
+            <FlatButton text='Delete' onPress={() => deleteReview(index)}/>
+          </View>
+        )} />
+      </Modal>
 
-      {tenantUI()}
+      <View style={{flex: 1}}>
+        <View style={{flex: 1}}>
+          <FlatButton 
+            text = "How Does It Work?"
+            onPress = {() => navigation.navigate("WhatIs")}
+          />
+        </View>
 
-      <FlatButton 
-        text = "How Does It Work?"
-        onPress = {() => navigation.navigate("WhatIs")}
-      />
+        {tenantUI()}
 
-      <FlatButton 
-        text = "Logout"
-        onPress = {modalOn2}
-      />
-
+        <View style={{flex: 1, justifyContent: "flex-end"}}>
+          <FlatButton 
+            text = "Logout"
+            onPress = {modalOn2}
+          />
+        </View>
+      </View>
     </View>
   );
 }
@@ -323,5 +352,9 @@ const styles = StyleSheet.create({
   },
   modalContent: {
     flex: 1,
-  }
+  },
+  buttonFlex: {
+    flex: 2,
+    flexDirection: "column",
+  },
 });

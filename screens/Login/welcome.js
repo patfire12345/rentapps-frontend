@@ -72,7 +72,6 @@ export default function Welcome({modalFunction}) {
                         const user = await verifyLogin(values.username,values.password);
                         if (user.verified) {
                             modalFunction.storeUser(user);
-                            modalFunction.changeWelcomeMessage(user.firstName);
                             modalFunction.changeEmail(user.email);
                             modalFunction.changePostNumber(user.user.userDetails.postNumber);
 
@@ -82,7 +81,6 @@ export default function Welcome({modalFunction}) {
                                 );
                             })
 
-                            // modalFunction.reviewsAreInitialized();
                             modalFunction.off();
                         }
 
@@ -109,14 +107,22 @@ export default function Welcome({modalFunction}) {
                                 secureTextEntry = {true}
                             />
                             <Text style={globalStyles.errorText}>{ props.touched.password && props.errors.password }</Text>
-                            <FlatButton 
-                                text="Login" 
-                                onPress={props.handleSubmit}
-                            />
-                            <FlatButton 
-                                text="Register" 
-                                onPress={onSubmitRegister}
-                            />
+
+                            <View style={globalStyles.flex}>
+                                <View style={styles.normalButton}>
+                                    <FlatButton 
+                                        text="Login" 
+                                        onPress={props.handleSubmit}
+                                    />
+                                </View>
+
+                                <View style={styles.normalButton}>
+                                    <FlatButton 
+                                        text="Register" 
+                                        onPress={onSubmitRegister}
+                                    />
+                                </View>
+                            </View>
                         </View>
                     )}
                 </Formik>
@@ -124,3 +130,9 @@ export default function Welcome({modalFunction}) {
         </TouchableWithoutFeedback>
     )
 }
+
+const styles = StyleSheet.create({
+    normalButton: {
+        margin: 10,
+    }    
+});

@@ -5,16 +5,18 @@ import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
 
 export default function FlatButton({ text, onPress, disabled, flex, flexDirection, justifyContent }) {
     return (
-        <TouchableOpacity onPress={onPress} disabled={disabled}>
-            <View style={styles.button}>
-                <Text 
-                    style={
-                        styles.buttonText
-                    }> 
-                    {text} 
-                </Text>
-            </View>
-        </TouchableOpacity>
+        <View>
+            <TouchableOpacity onPress={onPress} disabled={disabled}>
+                <View style={styles.button}>
+                    <Text 
+                        style={
+                            styles.buttonText
+                        }> 
+                        {text} 
+                    </Text>
+                </View>
+            </TouchableOpacity>
+        </View>
     )
 }
 

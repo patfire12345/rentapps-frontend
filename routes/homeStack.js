@@ -18,7 +18,7 @@ const screens = {
         navigationOptions: 
             ({navigation}) => {
                 return {
-                    headerTitle: () => <Header navigation={navigation} title='Home'/>,
+                    headerTitle: () => <Header navigation={navigation} title='Welcome'/>,
                 }
         }
     },

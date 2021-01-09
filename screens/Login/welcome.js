@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, TouchableWithoutFeedback, Keyboard, Modal } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, TouchableWithoutFeedback, Keyboard, ScrollView } from 'react-native';
 import {globalStyles} from '../../styles/global';
 import {Formik} from 'formik';
 import FlatButton from '../../shared/button';
@@ -60,80 +60,82 @@ export default function Welcome({modalFunction}) {
     }
 
     return (
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <View style={globalStyles.container}>
-                <Formik
-                    initialValues={{ username: "", password: "" }}
-                    validationSchema={reviewSchema}
-                    onSubmit={async (values,action) => {
-                        const user = await verifyLogin(values.username,values.password);
-                        if (user.verified) {
-                            modalFunction.storeUser(user);
-                            modalFunction.changeEmail(user.email);
-                            modalFunction.changePostNumber(user.user.userDetails.postNumber);
+        <ScrollView>
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                <View style={globalStyles.container}>
+                    <Formik
+                        initialValues={{ username: "", password: "" }}
+                        validationSchema={reviewSchema}
+                        onSubmit={async (values,action) => {
+                            const user = await verifyLogin(values.username,values.password);
+                            if (user.verified) {
+                                modalFunction.storeUser(user);
+                                modalFunction.changeEmail(user.email);
+                                modalFunction.changePostNumber(user.user.userDetails.postNumber);
 
-                            user.user.userDetails.reviews.map((review) => {
-                                modalFunction.changeReviews(
-                                    {title: review.title, body: review.body, key: review.key, applications: review.applications}
-                                );
-                            })
+                                user.user.userDetails.reviews.map((review) => {
+                                    modalFunction.changeReviews(
+                                        {title: review.title, body: review.body, key: review.key, applications: review.applications}
+                                    );
+                                })
 
-                            modalFunction.off();
-                        }
+                                modalFunction.off();
+                            }
 
-                        action.resetForm();
-                        
-                    }}
-                >
-                    {(props) => (
-                        <View style={globalStyles.container}>
-                            <View style={{flex: 1, justifyContent: "center"}}>
-                                <Text style={[globalStyles.titleText]}>RentApps</Text>
+                            action.resetForm();
+                            
+                        }}
+                    >
+                        {(props) => (
+                            <View style={globalStyles.container}>
+                                <View style={{flex: 1, justifyContent: "center"}}>
+                                    <Text style={[globalStyles.titleText]}>RentApps</Text>
 
-                                <View style={{top: 30}}>
-                                    <TextInput 
-                                        style={globalStyles.input} 
-                                        placeholder="Email"
-                                        onChangeText={props.handleChange("username")}
-                                        value={props.values.username}
-                                        onBlur={props.handleBlur('username')}
-                                    />
-                                    <Text style={globalStyles.errorText}>{ props.touched.username && props.errors.username }</Text>
-                                    <TextInput 
-                                        style={globalStyles.input} 
-                                        placeholder="Password"
-                                        onChangeText={props.handleChange("password")}
-                                        value={props.values.password}
-                                        onBlur={props.handleBlur('password')}
-                                        secureTextEntry = {true}
-                                    />
-                                    <Text style={globalStyles.errorText}>{ props.touched.password && props.errors.password }</Text>
-                                </View>
-
-                            {/* </View>
-
-                            <View style={{flex: 1, justifyContent: "flex-end"}}> */}
-                                <View style={{top: 40}}>
-                                    <View style={styles.normalButton}>
-                                        <FlatButton 
-                                            text="Login" 
-                                            onPress={props.handleSubmit}
+                                    <View style={{top: 30}}>
+                                        <TextInput 
+                                            style={globalStyles.input} 
+                                            placeholder="Email"
+                                            onChangeText={props.handleChange("username")}
+                                            value={props.values.username}
+                                            onBlur={props.handleBlur('username')}
                                         />
+                                        <Text style={globalStyles.errorText}>{ props.touched.username && props.errors.username }</Text>
+                                        <TextInput 
+                                            style={globalStyles.input} 
+                                            placeholder="Password"
+                                            onChangeText={props.handleChange("password")}
+                                            value={props.values.password}
+                                            onBlur={props.handleBlur('password')}
+                                            secureTextEntry = {true}
+                                        />
+                                        <Text style={globalStyles.errorText}>{ props.touched.password && props.errors.password }</Text>
                                     </View>
 
-                                    <View style={styles.normalButton}>
-                                        <FlatButton 
-                                            text="Register" 
-                                            onPress={onSubmitRegister}
-                                        />
+                                {/* </View>
+
+                                <View style={{flex: 1, justifyContent: "flex-end"}}> */}
+                                    <View style={{top: 40}}>
+                                        <View style={styles.normalButton}>
+                                            <FlatButton 
+                                                text="Login" 
+                                                onPress={props.handleSubmit}
+                                            />
+                                        </View>
+
+                                        <View style={styles.normalButton}>
+                                            <FlatButton 
+                                                text="Register" 
+                                                onPress={onSubmitRegister}
+                                            />
+                                        </View>
                                     </View>
                                 </View>
                             </View>
-                        </View>
-                    )}
-                </Formik>
-            </View>
-        </TouchableWithoutFeedback>
+                        )}
+                    </Formik>
+                </View>
+            </TouchableWithoutFeedback>
+        </ScrollView>
     )
 }
 

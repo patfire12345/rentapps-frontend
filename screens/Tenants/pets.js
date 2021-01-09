@@ -13,7 +13,7 @@ const reviewSchema = yup.object({
         // }),
 })
 
-export default function PetSection({functions}) {
+export default function PetSection({functions, petTypeValue}) {
 
     const [petName,setPetName] = useState(false);
 
@@ -31,9 +31,8 @@ export default function PetSection({functions}) {
 
     function noPress() {
         hasNoPetName();
-        functions.petType("N/A");
+        functions.petType(petTypeValue);
         functions.closeFunction();
-        //functions.openFunction();
     }
 
     function petText() {
@@ -41,12 +40,11 @@ export default function PetSection({functions}) {
             return (
                 <View style={globalStyles.container}>
                     <Formik 
-                        initialValues={{ petDes: "" }}
+                        initialValues={{ petDes: petTypeValue }}
                         validationSchema={reviewSchema}
                         onSubmit={async (values) => {
                             await functions.petType(values.petDes);
                             functions.closeFunction();
-                            //functions.openFunction();
                         }}
                     >
                         {(props) => (

@@ -9,7 +9,7 @@ const reviewSchema = yup.object({
     
 })
 
-export default function StatusSection({functions}) {
+export default function StatusSection({functions, status}) {
 
     const [isStudent, setIsStudent] = useState(false);
     const [isEmployed, setIsEmployed] = useState(false);
@@ -31,12 +31,12 @@ export default function StatusSection({functions}) {
         functions.becomeUnemployed();
     }
 
-    const status = () => {
+    const statusForm = () => {
         if (isStudent) {
             return (
                 <View style={globalStyles.container}>
                     <Formik 
-                        initialValues={{ school: "", location: "", year: "",}}
+                        initialValues={{ school: status.school, location: status.location, year: status.year,}}
                         //validationSchema={reviewSchema}
                         onSubmit={async (values) => {
                             await functions.changeStatus(values,"student");
@@ -89,7 +89,9 @@ export default function StatusSection({functions}) {
             return (
                 <View style={globalStyles.container}>
                     <Formik 
-                        initialValues={{ job: "", company: "", address: "", phone: "", title: "", duration: "", employer: "",}}
+                        initialValues={{ job: status.job, company: status.company, address: status.address, 
+                            phone: status.phone, title: status.title, duration: status.duration, employer: status.employer,}}
+
                         onSubmit={async (values) => {
                             await functions.changeStatus(values,"employee");
                             functions.closeFunction();
@@ -187,7 +189,7 @@ export default function StatusSection({functions}) {
                 
             </View>
 
-            {status()}
+            {statusForm()}
         </View>
         
     )

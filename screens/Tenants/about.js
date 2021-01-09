@@ -372,7 +372,9 @@ export default function About({ navigation }) {
                         openFunction: openResModal, 
                         closeFunction: closePetModal,
                         petType: addPetType,  
-                    }}/>
+                    }}
+                    petTypeValue = {petType}
+                    />
             </Modal> 
 
             <Modal visible={resModal} animationType='slide'>
@@ -382,7 +384,9 @@ export default function About({ navigation }) {
                         // openFunction: openVehicleModal, 
                         closeFunction: closeResModal,
                         addResInfo: addResInfo,
-                    }}/>
+                    }}
+                    residenceValue = {hasRes}
+                    />
             </Modal>
 
             <Modal visible={statusModal} animationType='slide'>
@@ -394,7 +398,9 @@ export default function About({ navigation }) {
                         becomeEmployed: becomeEmployed,
                         becomeUnemployed: becomeUnemployed,
                         changeStatus: changeStatus,
-                    }} />
+                    }} 
+                    status={generalStatus}
+                    />
             </Modal>
 
             <Modal visible={refModal} animationType='slide'>
@@ -402,7 +408,9 @@ export default function About({ navigation }) {
                     {{
                         closeFunction: closeRefModal,
                         addRefInfo: addRef,
-                    }} />
+                    }} 
+                    referenceValue={hasRef}
+                    />
             </Modal>
 
             <ScrollView>

@@ -9,7 +9,7 @@ const reviewSchema = yup.object({
     
 })
 
-export default function ReferenceSection({functions}) {
+export default function ReferenceSection({functions, referenceValue}) {
 
     return (
         
@@ -19,7 +19,7 @@ export default function ReferenceSection({functions}) {
             </Text>
             <View style={globalStyles.container}>
                 <Formik 
-                    initialValues={{ name: "", phone: "", email: "",}}
+                    initialValues={{ name: referenceValue.name, phone: referenceValue.phone, email: referenceValue.email,}}
                     onSubmit={async (values) => {
                         await functions.addRefInfo(values);
                         functions.closeFunction();

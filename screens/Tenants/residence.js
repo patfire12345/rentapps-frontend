@@ -50,7 +50,7 @@ const reviewSchema = yup.object({
         }),
 })
 
-export default function ResidenceSection({functions}) {
+export default function ResidenceSection({functions, residenceValue}) {
 
     return (
         
@@ -60,7 +60,11 @@ export default function ResidenceSection({functions}) {
             </Text>
             <View style={globalStyles.container}>
                 <Formik 
-                    initialValues={{ address: "", startMonth: "", startYear: "", endMonth: "", endYear: "", landlordName: "", landlordEmail: "", landlordPhone: ""}}
+                    initialValues={{ address: residenceValue.address, startMonth: residenceValue.startMonth, 
+                        startYear: residenceValue.startYear, endMonth: residenceValue.endMonth, 
+                        endYear: residenceValue.endYear, landlordName: residenceValue.landlordName, 
+                        landlordEmail: residenceValue.landlordEmail, landlordPhone: residenceValue.landlordPhone}}
+                        
                     onSubmit={async (values) => {
                         await functions.addResInfo(values);
                         functions.closeFunction();

@@ -52,10 +52,10 @@ export default function About({ navigation }) {
 
     const [hasRes, sethasRes] = useState({
         address: navigation.getParam('address'),
-        startMonth: navigation.getParam('duration'),
-        startYear: navigation.getParam('duration'),
-        endMonth: navigation.getParam('duration'),
-        endYear: navigation.getParam('duration'),
+        startMonth: navigation.getParam('startMonth'),
+        startYear: navigation.getParam('startYear'),
+        endMonth: navigation.getParam('endMonth'),
+        endYear: navigation.getParam('endYear'),
         landlordName: navigation.getParam('landlordName'),
         landlordEmail: navigation.getParam('landlordEmail'),
         landlordPhone: navigation.getParam('landlordPhone'),
@@ -92,6 +92,8 @@ export default function About({ navigation }) {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({address: resInfo.address, duration: resInfo.startMonth, 
+                    resStartMonth: resInfo.startMonth, resStartYear: resInfo.startYear,
+                    resEndMonth: resInfo.endMonth, resEndYear: resInfo.endYear,
                     landlordName: resInfo.landlordName, landlordEmail: resInfo.landlordEmail,
                     landlordPhone: resInfo.landlordPhone,email})
                 }

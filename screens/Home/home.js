@@ -193,15 +193,15 @@ export default function Home({ navigation }) {
 
     if (userState && !userState.user.userDetails.tenant) {
       return (
-        <View style={{flex: 1, flexDirection: "row", justifyContent: "space-evenly"}}>
-          <View>
+        <View>
+          <View style={{margin: 10}}>
             <FlatButton
               text='My Listings'
               style={styles.modalToggle}
               onPress={() => setModalOpen4(true)}
             />
           </View>
-          <View>
+          <View style={{margin: 10}}>
             <FlatButton
               text='Create a New Listing'
               style={styles.modalToggle}
@@ -311,8 +311,8 @@ export default function Home({ navigation }) {
         )} />
       </Modal>
 
-      <View style={{flex: 1}}>
-        <View style={{flex: 1}}>
+      <View style={{flex: 1, justifyContent: "center"}}>
+        <View style={{margin: 10}}>
           <FlatButton 
             text = "How Does It Work?"
             onPress = {() => navigation.navigate("WhatIs")}
@@ -321,12 +321,20 @@ export default function Home({ navigation }) {
 
         {tenantUI()}
 
-        <View style={{flex: 1, justifyContent: "flex-end"}}>
+        <View style={{margin: 10}}>
+          <FlatButton 
+              text = "Edit My Profile"
+              onPress = {() => navigation.navigate("WhatIs")}
+          />
+        </View>
+
+      </View>
+
+      <View style={{justifyContent: "flex-end", margin: 10}}>
           <FlatButton 
             text = "Logout"
             onPress = {modalOn2}
           />
-        </View>
       </View>
     </View>
   );

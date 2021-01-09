@@ -62,7 +62,6 @@ export default function Welcome({modalFunction}) {
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <View style={globalStyles.container}>
-                <Text style={globalStyles.titleText}>RentApps</Text>
                 <Formik
                     initialValues={{ username: "", password: "" }}
                     validationSchema={reviewSchema}
@@ -87,38 +86,47 @@ export default function Welcome({modalFunction}) {
                     }}
                 >
                     {(props) => (
-                        <View>
-                            <TextInput 
-                                style={globalStyles.input} 
-                                placeholder="Email"
-                                onChangeText={props.handleChange("username")}
-                                value={props.values.username}
-                                onBlur={props.handleBlur('username')}
-                            />
-                            <Text style={globalStyles.errorText}>{ props.touched.username && props.errors.username }</Text>
-                            <TextInput 
-                                style={globalStyles.input} 
-                                placeholder="Password"
-                                onChangeText={props.handleChange("password")}
-                                value={props.values.password}
-                                onBlur={props.handleBlur('password')}
-                                secureTextEntry = {true}
-                            />
-                            <Text style={globalStyles.errorText}>{ props.touched.password && props.errors.password }</Text>
+                        <View style={globalStyles.container}>
+                            <View style={{flex: 1, justifyContent: "center"}}>
+                                <Text style={[globalStyles.titleText]}>RentApps</Text>
 
-                            <View style={globalStyles.flex}>
-                                <View style={styles.normalButton}>
-                                    <FlatButton 
-                                        text="Login" 
-                                        onPress={props.handleSubmit}
+                                <View style={{top: 30}}>
+                                    <TextInput 
+                                        style={globalStyles.input} 
+                                        placeholder="Email"
+                                        onChangeText={props.handleChange("username")}
+                                        value={props.values.username}
+                                        onBlur={props.handleBlur('username')}
                                     />
+                                    <Text style={globalStyles.errorText}>{ props.touched.username && props.errors.username }</Text>
+                                    <TextInput 
+                                        style={globalStyles.input} 
+                                        placeholder="Password"
+                                        onChangeText={props.handleChange("password")}
+                                        value={props.values.password}
+                                        onBlur={props.handleBlur('password')}
+                                        secureTextEntry = {true}
+                                    />
+                                    <Text style={globalStyles.errorText}>{ props.touched.password && props.errors.password }</Text>
                                 </View>
 
-                                <View style={styles.normalButton}>
-                                    <FlatButton 
-                                        text="Register" 
-                                        onPress={onSubmitRegister}
-                                    />
+                            {/* </View>
+
+                            <View style={{flex: 1, justifyContent: "flex-end"}}> */}
+                                <View style={{top: 40}}>
+                                    <View style={styles.normalButton}>
+                                        <FlatButton 
+                                            text="Login" 
+                                            onPress={props.handleSubmit}
+                                        />
+                                    </View>
+
+                                    <View style={styles.normalButton}>
+                                        <FlatButton 
+                                            text="Register" 
+                                            onPress={onSubmitRegister}
+                                        />
+                                    </View>
                                 </View>
                             </View>
                         </View>

@@ -79,6 +79,8 @@ export default function Welcome({modalFunction}) {
                                     );
                                 })
 
+                                // console.log("Logged in!")
+
                                 modalFunction.off();
                             }
 

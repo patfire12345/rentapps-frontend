@@ -22,6 +22,10 @@ export default function Home({ navigation }) {
   const [userEmail, setUserEmail] = useState("");
   const IP = config.IP;
 
+  // useEffect(() => {
+  //   setModalOpen2(!modalOpen2);
+  // },[userState])
+
 
   const changeEmail = (email) => {
     setUserEmail(email);

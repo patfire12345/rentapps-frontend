@@ -102,31 +102,31 @@ export default function About({ navigation }) {
         if (!(isStudent || isEmployed)) {
             return (
                 <View>
-                    <Text>Currently: Unemployed</Text>
+                    <Text style={globalStyles.application}>Currently: Unemployed</Text>
                 </View>
         )}
 
         else if (isStudent) {
             return (
                 <View>
-                    <Text>Currently: Student</Text>
-                    <Text>School: {generalStatus.university}</Text>
-                    <Text>Area of Study: {generalStatus.universityLocation}</Text>
-                    <Text>Year of Study: {generalStatus.studyYear}</Text>
+                    <Text style={globalStyles.application}>Currently: Student</Text>
+                    <Text style={globalStyles.application}>School: {generalStatus.university}</Text>
+                    <Text style={globalStyles.application}>Area of Study: {generalStatus.universityLocation}</Text>
+                    <Text style={globalStyles.application}>Year of Study: {generalStatus.studyYear}</Text>
                 </View>
         )}
 
         else if (isEmployed) {
             return (
                 <View>
-                    <Text>Currently: Employed</Text>
-                    <Text>Occupation: {generalStatus.occupation}</Text>
-                    <Text>Employer: {generalStatus.company}</Text>
-                    <Text>Business Address: {generalStatus.companyAddress}</Text>
-                    <Text>Business Telephone: {generalStatus.companyPhone}</Text>
-                    <Text>Position Held: {generalStatus.position}</Text>
-                    <Text>Length of Employment: {generalStatus.occupationDuration}</Text>
-                    <Text>Name of Supervisor: {generalStatus.occupationSupervisor}</Text>
+                    <Text style={globalStyles.application}>Currently: Employed</Text>
+                    <Text style={globalStyles.application}>Occupation: {generalStatus.occupation}</Text>
+                    <Text style={globalStyles.application}>Employer: {generalStatus.company}</Text>
+                    <Text style={globalStyles.application}>Business Address: {generalStatus.companyAddress}</Text>
+                    <Text style={globalStyles.application}>Business Telephone: {generalStatus.companyPhone}</Text>
+                    <Text style={globalStyles.application}>Position Held: {generalStatus.position}</Text>
+                    <Text style={globalStyles.application}>Length of Employment: {generalStatus.occupationDuration}</Text>
+                    <Text style={globalStyles.application}>Name of Supervisor: {generalStatus.occupationSupervisor}</Text>
                 </View>
         )}
     }
@@ -135,19 +135,19 @@ export default function About({ navigation }) {
     return (
         <View style={globalStyles.container}>
             <ScrollView>
-                <Text>Profile</Text>
+                <Text style={globalStyles.application}>Profile</Text>
                 <Text></Text>
                 <View>
-                    <Text>Pet Type: {petType}</Text>
+                    <Text style={globalStyles.application}>Pet Type: {petType}</Text>
                 </View>
                 <Text></Text>
                 <View>
-                <Text>Residence Information: </Text>
-                <Text>Residence Address: {hasRes.address}</Text>
-                <Text>Residence Duration: {hasRes.startMonth}/{hasRes.startYear} - {hasRes.endMonth}/{hasRes.endYear}</Text>
-                <Text>Landlord Name: {hasRes.landlordName}</Text>
-                <Text>Landlord Email: {hasRes.landlordEmail}</Text>
-                <Text>Landlord Phone: {hasRes.landlordPhone}</Text>
+                <Text style={globalStyles.application}>Residence Information: </Text>
+                <Text style={globalStyles.application}>Residence Address: {hasRes.address}</Text>
+                <Text style={globalStyles.application}>Residence Duration: {hasRes.startMonth}/{hasRes.startYear} - {hasRes.endMonth}/{hasRes.endYear}</Text>
+                <Text style={globalStyles.application}>Landlord Name: {hasRes.landlordName}</Text>
+                <Text style={globalStyles.application}>Landlord Email: {hasRes.landlordEmail}</Text>
+                <Text style={globalStyles.application}>Landlord Phone: {hasRes.landlordPhone}</Text>
                 </View>
                 <Text></Text>
                 {/* <View>
@@ -158,10 +158,10 @@ export default function About({ navigation }) {
                 </View> */}
                 <Text></Text>
                 <View>
-                <Text>Personal References: </Text>
-                <Text>Name: {hasRef.refName} </Text>
-                <Text>Phone Number: {hasRef.refPhone} </Text>
-                <Text>Email: {hasRef.refEmail} </Text>
+                <Text style={globalStyles.application}>Personal References: </Text>
+                <Text style={globalStyles.application}>Name: {hasRef.refName} </Text>
+                <Text style={globalStyles.application}>Phone Number: {hasRef.refPhone} </Text>
+                <Text style={globalStyles.application}>Email: {hasRef.refEmail} </Text>
                 </View>
                 <Text></Text>
                 {status()}

@@ -255,7 +255,7 @@ export default function About({ navigation }) {
             return (
                 <TouchableOpacity onPress={openStatusModal}>
                     <View>
-                        <Text>Currently: Unemployed</Text>
+                        <Text style={globalStyles.application}>Currently: Unemployed</Text>
                     </View>
                 </TouchableOpacity>
         )}
@@ -264,10 +264,10 @@ export default function About({ navigation }) {
             return (
                 <TouchableOpacity onPress={openStatusModal}>
                     <View>
-                        <Text>Currently: Student</Text>
-                        <Text>School: {generalStatus.school}</Text>
-                        <Text>Area of Study: {generalStatus.location}</Text>
-                        <Text>Year of Study: {generalStatus.year}</Text>
+                        <Text style={globalStyles.application}>Currently: Student</Text>
+                        <Text style={globalStyles.application}>School: {generalStatus.school}</Text>
+                        <Text style={globalStyles.application}>Area of Study: {generalStatus.location}</Text>
+                        <Text style={globalStyles.application}>Year of Study: {generalStatus.year}</Text>
                     </View>
                 </TouchableOpacity>
         )}
@@ -276,14 +276,14 @@ export default function About({ navigation }) {
             return (
                 <TouchableOpacity onPress={openStatusModal}>
                     <View>
-                        <Text>Currently: Employed</Text>
-                        <Text>Occupation: {generalStatus.job}</Text>
-                        <Text>Employer: {generalStatus.company}</Text>
-                        <Text>Business Address: {generalStatus.address}</Text>
-                        <Text>Business Telephone: {generalStatus.phone}</Text>
-                        <Text>Position Held: {generalStatus.title}</Text>
-                        <Text>Length of Employment: {generalStatus.duration}</Text>
-                        <Text>Name of Supervisor: {generalStatus.employer}</Text>
+                        <Text style={globalStyles.application}>Currently: Employed</Text>
+                        <Text style={globalStyles.application}>Occupation: {generalStatus.job}</Text>
+                        <Text style={globalStyles.application}>Employer: {generalStatus.company}</Text>
+                        <Text style={globalStyles.application}>Business Address: {generalStatus.address}</Text>
+                        <Text style={globalStyles.application}>Business Telephone: {generalStatus.phone}</Text>
+                        <Text style={globalStyles.application}>Position Held: {generalStatus.title}</Text>
+                        <Text style={globalStyles.application}>Length of Employment: {generalStatus.duration}</Text>
+                        <Text style={globalStyles.application}>Name of Supervisor: {generalStatus.employer}</Text>
                     </View>
                 </TouchableOpacity>
         )}
@@ -416,19 +416,19 @@ export default function About({ navigation }) {
             </Modal>
 
             <ScrollView>
-                <Text>Profile</Text>
+                <Text style={globalStyles.application}>Profile</Text>
                 <Text></Text>
                 <TouchableOpacity onPress={openPetModal}>
-                    <Text>Pet Type: {petType}</Text>
+                    <Text style={globalStyles.application}>Pet Type: {petType}</Text>
                 </TouchableOpacity>
                 <Text></Text>
                 <TouchableOpacity onPress={openResModal}>
-                <Text>Residence Information: </Text>
-                <Text>Residence Address: {hasRes.address}</Text>
-                <Text>Residence Duration: {hasRes.startMonth}/{hasRes.startYear} - {hasRes.endMonth}/{hasRes.endYear}</Text>
-                <Text>Landlord Name: {hasRes.landlordName}</Text>
-                <Text>Landlord Email: {hasRes.landlordEmail}</Text>
-                <Text>Landlord Phone: {hasRes.landlordPhone}</Text>
+                <Text style={globalStyles.application}>Residence Information: </Text>
+                <Text style={globalStyles.application}>Residence Address: {hasRes.address}</Text>
+                <Text style={globalStyles.application}>Residence Duration: {hasRes.startMonth}/{hasRes.startYear} - {hasRes.endMonth}/{hasRes.endYear}</Text>
+                <Text style={globalStyles.application}>Landlord Name: {hasRes.landlordName}</Text>
+                <Text style={globalStyles.application}>Landlord Email: {hasRes.landlordEmail}</Text>
+                <Text style={globalStyles.application}>Landlord Phone: {hasRes.landlordPhone}</Text>
                 </TouchableOpacity>
                 <Text></Text>
                 {/* <TouchableOpacity onPress={openVehicleModal}>
@@ -439,10 +439,10 @@ export default function About({ navigation }) {
                 </TouchableOpacity> */}
                 <Text></Text>
                 <TouchableOpacity onPress={openRefModal}>
-                <Text>Personal References: </Text>
-                <Text>Name: {hasRef.name} </Text>
-                <Text>Phone Number: {hasRef.phone} </Text>
-                <Text>Email: {hasRef.email} </Text>
+                    <Text style={globalStyles.application}>Personal References: </Text>
+                    <Text style={globalStyles.application}>Name: {hasRef.name} </Text>
+                    <Text style={globalStyles.application}>Phone Number: {hasRef.phone} </Text>
+                    <Text style={globalStyles.application}>Email: {hasRef.email} </Text>
                 </TouchableOpacity>
                 <Text></Text>
                 {status()}

@@ -15,24 +15,6 @@ export const globalStyles = StyleSheet.create({
 
         display: 'flex',
         alignItems: 'center',
-
-        // position: absolute;
-        // left: 34.44%;
-        // right: 28.89%;
-        // top: 8.12%;
-        // bottom: 85.78%;
-
-        // font-family: Ropa Sans;
-        // font-style: italic;
-        // font-weight: normal;
-        // font-size: 36px;
-        // line-height: 39px;
-        // /* identical to box height */
-
-        // display: flex;
-        // align-items: center;
-
-        // color: #000000;
     },
     paragraph: {
         marginVertical: 8,
@@ -59,5 +41,8 @@ export const globalStyles = StyleSheet.create({
     flex: {
         display: "flex",
         margin: "auto",
+    },
+    application: {
+        fontFamily: "patrick-hand",
     }
 })

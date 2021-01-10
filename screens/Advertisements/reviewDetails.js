@@ -12,12 +12,12 @@ export default function ReviewDetails({ navigation }) {
     return (
         <View style={globalStyles.container}>
             <Card>
-                <Text>Title: { navigation.getParam('title') }</Text>
-                <Text>Description: { navigation.getParam('body') }</Text>
-                <Text>Post ID: { navigation.getParam('key') }</Text>
+                <Text style={globalStyles.application}>Title: { navigation.getParam('title') }</Text>
+                <Text style={globalStyles.application}>Description: { navigation.getParam('body') }</Text>
+                <Text style={globalStyles.application}>Post ID: { navigation.getParam('key') }</Text>
             </Card>
 
-            <Text>My applications:</Text>
+            <Text style={globalStyles.application}>My applications:</Text>
 
             <FlatList data={emails} renderItem={({item}) => (
                 <TouchableOpacity onPress={async () => {
@@ -26,7 +26,7 @@ export default function ReviewDetails({ navigation }) {
                       })
                 }}>
                     <Card>
-                        <Text>Here is an email: {item.email} </Text>
+                        <Text style={globalStyles.application}>Application from {item.email} </Text>
                     </Card>
                 </TouchableOpacity>
             )}/>

@@ -7,7 +7,6 @@ import Card from '../../shared/card';
 export default function ReviewDetails({ navigation }) {
 
     const emails = navigation.getParam("applications");
-    const [userState,setUserState] = useState(navigation.getParam("userState"));
 
     return (
         <View style={globalStyles.container}>
@@ -17,9 +16,13 @@ export default function ReviewDetails({ navigation }) {
                 <Text style={globalStyles.application}>Post ID: { navigation.getParam('key') }</Text>
             </Card>
 
-            <Text style={globalStyles.application}>My applications:</Text>
+            { () => {
+                if (navigation.getParam("tenant")) {
+                    (<Text style={globalStyles.application}>My applications:</Text>)
+                }
+            }}
 
-            <FlatList data={emails} renderItem={({item}) => (
+            <FlatList data={emails} renderItem={({item, index}) => (
                 <TouchableOpacity onPress={async () => {
                     navigation.navigate('AboutForLandlord', {
                         email: item.email,

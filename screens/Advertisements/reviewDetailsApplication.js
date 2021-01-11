@@ -7,7 +7,7 @@ import FlatButton from '../../shared/button';
 import config from '../../config';
 
 
-export default function ReviewDetailsApplication({ searchReview,navigation,modalTenantOff,email }) {
+export default function ReviewDetailsApplication({ route,navigation }) {
 
     const [key, setKey] = useState("");
     const [foundPost, setFoundPost] = useState(false);
@@ -20,7 +20,36 @@ export default function ReviewDetailsApplication({ searchReview,navigation,modal
 
     const [disabledApply, setDisabledApply] = useState(false);
 
+    const email = navigation.getParam("email");
+
     const IP = config.IP;
+
+    const searchReview = async (key) => {
+        try {
+          const response = await fetch(IP + "/findPost", 
+              {
+              method: "POST", 
+              headers: {
+                  Accept: 'application/json',
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ key })
+              }
+          );
+          
+          if(!response.ok) {
+              throw new Error(response.messages)
+          }
+          
+          const user = await response.json();
+          
+          return user;
+    
+        } catch(error) {
+            console.log(error);
+            // return error;
+        }
+      }
 
     const searchForReview = async (key) => {
         setFoundPost(false);
@@ -84,7 +113,6 @@ export default function ReviewDetailsApplication({ searchReview,navigation,modal
                 <View>
                     <TouchableOpacity onPress={() => {
                         navigation.navigate('ReviewDetails', {title,body,key});
-                        modalTenantOff();
                     }}>
                         <Card>
                             <Text style={globalStyles.titleText}>{ title }</Text>

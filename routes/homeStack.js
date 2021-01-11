@@ -9,6 +9,8 @@ import AboutForLandlord from "../screens/Tenants/aboutForLandlord";
 import WhatIs from "../screens/Home/whatIs";
 import Header from '../shared/header';
 import {globalStyles} from '../styles/global';
+import ReviewDetailsApplication from '../screens/Advertisements/reviewDetailsApplication';
+import Listings from '../screens/Advertisements/listings';
 
 
 
@@ -55,7 +57,25 @@ const screens = {
                     headerTitle: () => <Header navigation={navigation} title='How Does It Work?'/>,
                 }
             }
-    }
+    },
+    ReviewDetailsApplication: {
+        screen: ReviewDetailsApplication,
+        navigationOptions:
+            ({navigation}) => {
+                return {
+                    headerTitle: () => <Header navigation={navigation} title='Find a Listing'/>,
+                }
+            }
+    },
+    Listings: {
+        screen: Listings,
+        navigationOptions:
+            ({navigation}) => {
+                return {
+                    headerTitle: () => <Header navigation={navigation} title='My Listings'/>,
+                }
+            }
+    },
 }
 
 const HomeStack = createStackNavigator(screens, {

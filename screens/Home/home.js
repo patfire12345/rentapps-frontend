@@ -80,72 +80,6 @@ export default function Home({ navigation }) {
     }
   }
 
-  const deleteReview = async (index) => {
-    if (reviews.length == 1) {
-      setReviews([]);
-    }
-
-    else if (index === reviews.length-1) {
-      setReviews(reviews.slice(0,index));
-    }
-
-    else{
-      setReviews(reviews.slice(0,index).concat(reviews.slice(index+1,reviews.length)));
-    }
-
-    try {
-      const response = await fetch(IP + "/deletePost", 
-          {
-          method: "POST", 
-          headers: {
-              Accept: 'application/json',
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ index, email:userEmail })
-          }
-      );
-      
-      if(!response.ok) {
-          throw new Error(response.messages)
-      }
-      
-      const user = await response.json();
-      
-      return user;
-
-    } catch(error) {
-        console.log(error);
-        return error;
-    }
-  }
-
-  const searchReview = async (key) => {
-    try {
-      const response = await fetch(IP + "/findPost", 
-          {
-          method: "POST", 
-          headers: {
-              Accept: 'application/json',
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ key })
-          }
-      );
-      
-      if(!response.ok) {
-          throw new Error(response.messages)
-      }
-      
-      const user = await response.json();
-      
-      return user;
-
-    } catch(error) {
-        console.log(error);
-        // return error;
-    }
-  }
-
   const tenantUI = () => {
     if (userState && userState.user.userDetails.tenant) {
       return (
@@ -192,7 +126,9 @@ export default function Home({ navigation }) {
             flexDirection="row"
             flex={1}
             style={styles.modalToggle}
-            onPress={() => setModalTenantOpen(true)} 
+            onPress={() => navigation.navigate('ReviewDetailsApplication', {
+              email:userEmail,
+            })} 
           />
             
         </View>
@@ -206,7 +142,10 @@ export default function Home({ navigation }) {
             <FlatButton
               text='My Listings'
               style={styles.modalToggle}
-              onPress={() => setModalOpen4(true)}
+              onPress={() => navigation.navigate("Listings", {
+                reviews: reviews,
+                tenant: userState.user.userDetails.tenant,
+              })}
             />
           </View>
           <View style={{margin: 10}}>
@@ -243,13 +182,13 @@ export default function Home({ navigation }) {
     setModalOpen3(true);
   }
 
-  const modalOff4 = () => {
-    setModalOpen4(false);
-  }
+  // const modalOff4 = () => {
+  //   setModalOpen4(false);
+  // }
 
-  const modalOn4 = () => {
-    setModalOpen4(true);
-  }
+  // const modalOn4 = () => {
+  //   setModalOpen4(true);
+  // }
 
   return (
     <View style={globalStyles.container}>
@@ -268,20 +207,6 @@ export default function Home({ navigation }) {
         </TouchableWithoutFeedback>
       </Modal>
 
-      <Modal visible={modalTenantOpen} animationType='slide'>
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <ScrollView style={styles.modalContent}>
-              <MaterialIcons 
-                  name='close'
-                  size={24} 
-                  style={{...styles.modalToggle, ...styles.modalClose}} 
-                  onPress={() => setModalTenantOpen(false)} 
-              />
-              <ReviewDetailsApplication searchReview={searchReview} modalTenantOff={modalTenantOff}  navigation={navigation} email={userEmail}/>
-            </ScrollView>
-        </TouchableWithoutFeedback>
-      </Modal>
-
       <Modal visible={modalOpen2} animationType='slide'>
         <Welcome modalFunction={{off: modalOff2, on: modalOn3, storeUser, changeEmail, changeReviews, changePostNumber}} />
       </Modal>
@@ -296,7 +221,7 @@ export default function Home({ navigation }) {
         <Register modalFunction={{off: modalOff3, login: modalOn2}}/>
       </Modal>
 
-      <Modal visible={modalOpen4} animationType='slide'>
+      {/* <Modal visible={modalOpen4} animationType='slide'>
         <MaterialIcons 
           name='close'
           size={24} 
@@ -307,7 +232,7 @@ export default function Home({ navigation }) {
           <View>
             <TouchableOpacity onPress={() => {
               navigation.navigate('ReviewDetails', {title: item.title, body: item.body, key: item.key, 
-              applications: item.applications});
+              applications: item.applications, tenant: userState.user.userDetails.tenant});
               setModalOpen4(false);
             }}>
               <Card>
@@ -317,7 +242,7 @@ export default function Home({ navigation }) {
             <FlatButton text='Delete' onPress={() => deleteReview(index)}/>
           </View>
         )} />
-      </Modal>
+      </Modal> */}
 
       <View style={{flex: 1, justifyContent: "center"}}>
         <View style={{margin: 10}}>

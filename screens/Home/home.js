@@ -12,10 +12,8 @@ import config from '../../config';
 
 export default function Home({ navigation }) {
   const [modalLandlordOpen, setModalLandlordOpen] = useState(false);
-  const [modalTenantOpen, setModalTenantOpen] = useState(false);
   const [modalOpen2, setModalOpen2] = useState(true);
   const [modalOpen3, setModalOpen3] = useState(false);
-  const [modalOpen4, setModalOpen4] = useState(false);
   const [reviews, setReviews] = useState([]);
   const [userState, setuserState] = useState(false);
   const [postNumber, setPostNumber] = useState("");
@@ -161,10 +159,6 @@ export default function Home({ navigation }) {
   }
 
   // modals
-  const modalTenantOff = () => {
-    setModalTenantOpen(false);
-  }
-
   const modalOff2 = () => {
     setModalOpen2(false);
   }
@@ -181,14 +175,6 @@ export default function Home({ navigation }) {
   const modalOn3 = () => {
     setModalOpen3(true);
   }
-
-  // const modalOff4 = () => {
-  //   setModalOpen4(false);
-  // }
-
-  // const modalOn4 = () => {
-  //   setModalOpen4(true);
-  // }
 
   return (
     <View style={globalStyles.container}>
@@ -220,29 +206,6 @@ export default function Home({ navigation }) {
         />
         <Register modalFunction={{off: modalOff3, login: modalOn2}}/>
       </Modal>
-
-      {/* <Modal visible={modalOpen4} animationType='slide'>
-        <MaterialIcons 
-          name='close'
-          size={24} 
-          style={{...styles.modalToggle, ...styles.modalClose}} 
-          onPress={() => setModalOpen4(false)} 
-        />
-        <FlatList data={reviews} renderItem={({ item,index }) => (
-          <View>
-            <TouchableOpacity onPress={() => {
-              navigation.navigate('ReviewDetails', {title: item.title, body: item.body, key: item.key, 
-              applications: item.applications, tenant: userState.user.userDetails.tenant});
-              setModalOpen4(false);
-            }}>
-              <Card>
-                <Text style={globalStyles.titleText}>{ item.title }</Text>
-              </Card>
-            </TouchableOpacity>
-            <FlatButton text='Delete' onPress={() => deleteReview(index)}/>
-          </View>
-        )} />
-      </Modal> */}
 
       <View style={{flex: 1, justifyContent: "center"}}>
         <View style={{margin: 10}}>

@@ -11,6 +11,7 @@ import Header from '../shared/header';
 import {globalStyles} from '../styles/global';
 import ReviewDetailsApplication from '../screens/Advertisements/reviewDetailsApplication';
 import Listings from '../screens/Advertisements/listings';
+import LandlordEditProfile from '../screens/Home/landlordEditProfile';
 
 
 
@@ -92,6 +93,15 @@ const screens = {
             ({navigation}) => {
                 return {
                     headerTitle: () => <Header navigation={navigation} title='My Listings'/>,
+                }
+            }
+    },
+    LandlordEditProfile: {
+        screen: LandlordEditProfile,
+        navigationOptions:
+            ({navigation}) => {
+                return {
+                    headerTitle: () => <Header navigation={navigation} title='Profile'/>,
                 }
             }
     },

@@ -363,58 +363,8 @@ export default function About({ navigation }) {
         }
     }
 
-
-
-    return (
-        <View style={globalStyles.container}>
-
-            <Modal visible={petModal} animationType='slide'>
-                    <PetSection functions= 
-                    {{  
-                        openFunction: openResModal, 
-                        closeFunction: closePetModal,
-                        petType: addPetType,  
-                    }}
-                    petTypeValue = {petType}
-                    />
-            </Modal> 
-
-            <Modal visible={resModal} animationType='slide'>
-                
-                    <ResidenceSection functions=
-                    {{  
-                        // openFunction: openVehicleModal, 
-                        closeFunction: closeResModal,
-                        addResInfo: addResInfo,
-                    }}
-                    residenceValue = {hasRes}
-                    />
-            </Modal>
-
-            <Modal visible={statusModal} animationType='slide'>
-                <StatusSection functions=
-                    {{
-                        openFunction: openRefModal,
-                        closeFunction: closeStatusModal,
-                        becomeStudent: becomeStudent,
-                        becomeEmployed: becomeEmployed,
-                        becomeUnemployed: becomeUnemployed,
-                        changeStatus: changeStatus,
-                    }} 
-                    status={generalStatus}
-                    />
-            </Modal>
-
-            <Modal visible={refModal} animationType='slide'>
-                <ReferenceSection functions=
-                    {{
-                        closeFunction: closeRefModal,
-                        addRefInfo: addRef,
-                    }} 
-                    referenceValue={hasRef}
-                    />
-            </Modal>
-
+    const application = () => {
+        return (
             <ScrollView>
                 <Text style={globalStyles.application}>Profile</Text>
                 <Text></Text>
@@ -448,6 +398,66 @@ export default function About({ navigation }) {
                 {status()}
                 <Text></Text>
             </ScrollView>
+        )
+    }
+
+    const modals = () => {
+        return (
+            <View>
+                <Modal visible={petModal} animationType='slide'>
+                        <PetSection functions= 
+                        {{  
+                            openFunction: openResModal, 
+                            closeFunction: closePetModal,
+                            petType: addPetType,  
+                        }}
+                        petTypeValue = {petType}
+                        />
+                </Modal> 
+
+                <Modal visible={resModal} animationType='slide'>
+                    
+                        <ResidenceSection functions=
+                        {{  
+                            // openFunction: openVehicleModal, 
+                            closeFunction: closeResModal,
+                            addResInfo: addResInfo,
+                        }}
+                        residenceValue = {hasRes}
+                        />
+                </Modal>
+
+                <Modal visible={statusModal} animationType='slide'>
+                    <StatusSection functions=
+                        {{
+                            openFunction: openRefModal,
+                            closeFunction: closeStatusModal,
+                            becomeStudent: becomeStudent,
+                            becomeEmployed: becomeEmployed,
+                            becomeUnemployed: becomeUnemployed,
+                            changeStatus: changeStatus,
+                        }} 
+                        status={generalStatus}
+                        />
+                </Modal>
+
+                <Modal visible={refModal} animationType='slide'>
+                    <ReferenceSection functions=
+                        {{
+                            closeFunction: closeRefModal,
+                            addRefInfo: addRef,
+                        }} 
+                        referenceValue={hasRef}
+                        />
+                </Modal>
+            </View>
+        )
+    }
+
+    return (
+        <View style={globalStyles.container}>
+            {modals()}
+            {application()}
         </View>
     )
 }

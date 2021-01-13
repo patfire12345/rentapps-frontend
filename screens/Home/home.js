@@ -1,13 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, FlatList, Modal,TouchableWithoutFeedback, Keyboard,ScrollView, Button, Alert } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, View, Modal,TouchableWithoutFeedback, Keyboard,ScrollView, Alert } from 'react-native';
 import { globalStyles } from '../../styles/global';
 import { MaterialIcons } from '@expo/vector-icons';
-import Card from '../../shared/card';
 import ReviewForm from '../Advertisements/reviewForm';
-import Register from '../Login/register';
 import FlatButton from '../../shared/button';
-import ReviewDetailsApplication from '../Advertisements/reviewDetailsApplication';
-import Welcome from '../Login/welcome';
 import config from '../../config';
 
 export default function Home({ navigation }) {
@@ -53,57 +49,91 @@ export default function Home({ navigation }) {
     }
   }
 
+  const aboutPageButton = () => {
+    return (
+      <FlatButton
+        text='My Application'
+        style={styles.modalToggle}
+        flexDirection="row"
+        flex={1}
+        onPress={() => navigation.navigate('About', {
+          user: userState,
+          pets: userState.pets,
+          email: userEmail,
+          address: userState.user.userDetails.resAddress,
+          duration: userState.user.userDetails.resDuration,
+          startMonth: userState.user.userDetails.resStartMonth,
+          startYear: userState.user.userDetails.resStartYear,
+          endMonth: userState.user.userDetails.resEndMonth,
+          endYear: userState.user.userDetails.resEndYear,
+          landlordName: userState.user.userDetails.landlordName,
+          landlordEmail: userState.user.userDetails.landlordEmail,
+          landlordPhone: userState.user.userDetails.landlordPhone,
+          model: userState.user.userDetails.vehicleModel,
+          make: userState.user.userDetails.vehicleMake,
+          year: userState.user.userDetails.vehicleYear,
+          license: userState.user.userDetails.vehicleLicense,
+          employment: userState.user.userDetails.employment,
+          university: userState.user.userDetails.university,
+          universityLocation: userState.user.userDetails.universityLocation,
+          studyYear: userState.user.userDetails.studyYear,
+          occupation: userState.user.userDetails.occupation,
+          company: userState.user.userDetails.company,
+          companyAddress: userState.user.userDetails.companyAddress,
+          companyPhone: userState.user.userDetails.companyPhone,
+          position: userState.user.userDetails.position,
+          occupationDuration: userState.user.userDetails.occupationDuration,
+          occupationSupervisor: userState.user.userDetails.occupationSupervisor,
+          refName: userState.user.userDetails.refName,
+          refEmail: userState.user.userDetails.refEmail,
+          refPhone: userState.user.userDetails.refPhone,
+      })} />
+    )
+  }
+
+  const reviewDetailsApplicationPageButton = () => {
+    return (
+      <FlatButton
+        text='Find a Listing' 
+        flexDirection="row"
+        flex={1}
+        style={styles.modalToggle}
+        onPress={() => navigation.navigate('ReviewDetailsApplication', {
+          email:userEmail,
+        })} 
+      />
+    )
+  }
+
+  const listingsPageButton = () => {
+    return (
+      <FlatButton
+        text='My Listings'
+        style={styles.modalToggle}
+        onPress={() => navigation.navigate("Listings", {
+          reviews: reviews,
+          tenant: userState.user.userDetails.tenant,
+        })}
+      />
+    )
+  }
+
+  const newListingButton = () => {
+    return (
+      <FlatButton
+        text='Create a New Listing'
+        style={styles.modalToggle}
+        onPress={() => setModalLandlordOpen(true)} 
+      />
+    )
+  }
+
   const tenantUI = () => {
     if (userState && userState.user.userDetails.tenant) {
       return (
-        <View style={{flex: 1, flexDirection: "row", justifyContent: "space-evenly"}}>
-          <FlatButton
-            text='My Application'
-            style={styles.modalToggle}
-            flexDirection="row"
-            flex={1}
-            onPress={() => navigation.navigate('About', {
-              user: userState,
-              pets: userState.pets,
-              email: userEmail,
-              address: userState.user.userDetails.resAddress,
-              duration: userState.user.userDetails.resDuration,
-              startMonth: userState.user.userDetails.resStartMonth,
-              startYear: userState.user.userDetails.resStartYear,
-              endMonth: userState.user.userDetails.resEndMonth,
-              endYear: userState.user.userDetails.resEndYear,
-              landlordName: userState.user.userDetails.landlordName,
-              landlordEmail: userState.user.userDetails.landlordEmail,
-              landlordPhone: userState.user.userDetails.landlordPhone,
-              model: userState.user.userDetails.vehicleModel,
-              make: userState.user.userDetails.vehicleMake,
-              year: userState.user.userDetails.vehicleYear,
-              license: userState.user.userDetails.vehicleLicense,
-              employment: userState.user.userDetails.employment,
-              university: userState.user.userDetails.university,
-              universityLocation: userState.user.userDetails.universityLocation,
-              studyYear: userState.user.userDetails.studyYear,
-              occupation: userState.user.userDetails.occupation,
-              company: userState.user.userDetails.company,
-              companyAddress: userState.user.userDetails.companyAddress,
-              companyPhone: userState.user.userDetails.companyPhone,
-              position: userState.user.userDetails.position,
-              occupationDuration: userState.user.userDetails.occupationDuration,
-              occupationSupervisor: userState.user.userDetails.occupationSupervisor,
-              refName: userState.user.userDetails.refName,
-              refEmail: userState.user.userDetails.refEmail,
-              refPhone: userState.user.userDetails.refPhone,
-            })} />
-          <FlatButton
-            text='Find a Listing' 
-            flexDirection="row"
-            flex={1}
-            style={styles.modalToggle}
-            onPress={() => navigation.navigate('ReviewDetailsApplication', {
-              email:userEmail,
-            })} 
-          />
-            
+        <View style={{flex: 1, justifyContent: "space-evenly", margin: 10, top: -15}}>
+          {aboutPageButton()}
+          {reviewDetailsApplicationPageButton()}
         </View>
       );
     }
@@ -112,30 +142,18 @@ export default function Home({ navigation }) {
       return (
         <View>
           <View style={{margin: 10}}>
-            <FlatButton
-              text='My Listings'
-              style={styles.modalToggle}
-              onPress={() => navigation.navigate("Listings", {
-                reviews: reviews,
-                tenant: userState.user.userDetails.tenant,
-              })}
-            />
+            {listingsPageButton()}
           </View>
           <View style={{margin: 10}}>
-            <FlatButton
-              text='Create a New Listing'
-              style={styles.modalToggle}
-              onPress={() => setModalLandlordOpen(true)} 
-            />
+            {newListingButton()}
           </View>
         </View>
       );
     }
   }
 
-  return (
-    <View style={globalStyles.container}>
-  
+  const addReviewModal = () => {
+    return (
       <Modal visible={modalLandlordOpen} animationType='slide'>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <ScrollView style={styles.modalContent}>
@@ -149,38 +167,65 @@ export default function Home({ navigation }) {
             </ScrollView>
         </TouchableWithoutFeedback>
       </Modal>
+    )
+  }
+
+  const howDoesItWorkButton = () => {
+    return (
+      <FlatButton 
+        text = "How Does It Work?"
+        onPress = {() => navigation.navigate("WhatIs")}
+      />
+    )
+  }
+
+  const editMyProfileButton = () => {
+    if (userState && !userState.user.userDetails.tenant) {
+      return (
+        <FlatButton 
+          text = "Edit My Profile"
+          onPress = {() => navigation.navigate("WhatIs")}
+        />
+      )
+    }
+  }
+
+  const logoutButton = () => {
+    return (
+      <FlatButton 
+        text = "Logout"
+        onPress = {() => {
+          Alert.alert("Log out", "Are you sure you want to log out?",
+            [
+              {text: "No",},
+              {text: "Yes", onPress: () => navigation.replace("Login")},
+            ]
+          )
+          }}
+      />
+    )
+  }
+
+  return (
+    <View style={globalStyles.container}>
+  
+      {addReviewModal()}
 
       <View style={{flex: 1, justifyContent: "center"}}>
         <View style={{margin: 10}}>
-          <FlatButton 
-            text = "How Does It Work?"
-            onPress = {() => navigation.navigate("WhatIs")}
-          />
+          {howDoesItWorkButton()}
         </View>
 
         {tenantUI()}
 
         <View style={{margin: 10}}>
-          <FlatButton 
-              text = "Edit My Profile"
-              onPress = {() => navigation.navigate("WhatIs")}
-          />
+          {editMyProfileButton()}
         </View>
 
       </View>
 
       <View style={{justifyContent: "flex-end", margin: 10}}>
-          <FlatButton 
-            text = "Logout"
-            onPress = {() => {
-              Alert.alert("Log out", "Are you sure you want to log out?",
-                [
-                  {text: "Yes", onPress: () => navigation.navigate("Login")},
-                  {text: "No",}
-                ]
-              )
-              }}
-          />
+        {logoutButton()}
       </View>
     </View>
   );

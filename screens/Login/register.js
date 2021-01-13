@@ -17,8 +17,7 @@ const reviewSchema = yup.object({
             .required(),
 })
 
-export default function Register({modalFunction}) {
-
+export default function Register({navigation}) {
 
     const [tenant,setTenant] = useState(true);
     const IP = config.IP;
@@ -71,8 +70,7 @@ export default function Register({modalFunction}) {
                     onSubmit={async (values,action) => {
 
                         if (await addInfo( values.email, values.password, values.firstname, values.lastname, tenant )) {
-                            modalFunction.off();
-                            modalFunction.login();
+                            navigation.goBack();
                         }
                     }}
                 >

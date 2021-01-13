@@ -16,15 +16,6 @@ import Listings from '../screens/Advertisements/listings';
 
 
 const screens = {
-    Home: {
-        screen: Home,
-        navigationOptions: 
-            ({navigation}) => {
-                return {
-                    headerTitle: () => <Header navigation={navigation} title='Welcome'/>,
-                }
-        }
-    },
     Login: {
         screen: Login,
         navigationOptions:
@@ -42,6 +33,15 @@ const screens = {
                     headerTitle: () => <Header navigation={navigation} title='Register'/>,
                 }
             }
+    },
+    Home: {
+        screen: Home,
+        navigationOptions: 
+            ({navigation}) => {
+                return {
+                    headerTitle: () => <Header navigation={navigation} title='Welcome'/>,
+                }
+        }
     },
     ReviewDetails: {
         screen: ReviewDetails,

@@ -16,12 +16,7 @@ const reviewSchema = yup.object({
 
 const IP = config.IP;
 
-export default function Welcome({modalFunction}) {
-
-    const [userState,setUserState] = useState();
-    const [email,setEmail] = useState();
-    const [postNumber,setpostNumber] = useState();
-    const [reviews,setReviews] = useState();
+export default function Welcome({navigation}) {
 
     const verifyLogin = async (email,password) => {
         try {
@@ -59,11 +54,6 @@ export default function Welcome({modalFunction}) {
         }
     }
 
-    const onSubmitRegister = () => {
-        modalFunction.off();
-        modalFunction.on();
-    }
-
     return (
         <ScrollView>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -74,19 +64,13 @@ export default function Welcome({modalFunction}) {
                         onSubmit={async (values,action) => {
                             const user = await verifyLogin(values.username,values.password);
                             if (user.verified) {
-                                modalFunction.storeUser(user);
-                                modalFunction.changeEmail(user.email);
-                                modalFunction.changePostNumber(user.user.userDetails.postNumber);
 
-                                user.user.userDetails.reviews.map((review) => {
-                                    modalFunction.changeReviews(
-                                        {title: review.title, body: review.body, key: review.key, applications: review.applications}
-                                    );
+                                navigation.replace("Home", {
+                                    userState: user,
+                                    email: user.email,
+                                    postNumber: user.user.userDetails.postNumber,
+                                    reviews: user.user.userDetails.reviews,
                                 })
-
-                                // console.log("Logged in!")
-
-                                modalFunction.off();
                             }
 
                             action.resetForm();
@@ -132,7 +116,8 @@ export default function Welcome({modalFunction}) {
                                         <View style={styles.normalButton}>
                                             <FlatButton 
                                                 text="Register" 
-                                                onPress={onSubmitRegister}
+                                                onPress={() => navigation.navigate("Register", {
+                                                })}
                                             />
                                         </View>
                                     </View>

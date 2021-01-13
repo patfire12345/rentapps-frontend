@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, FlatList, Modal,TouchableWithoutFeedback, Keyboard,ScrollView, Button } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, FlatList, Modal,TouchableWithoutFeedback, Keyboard,ScrollView, Button, Alert } from 'react-native';
 import { globalStyles } from '../../styles/global';
 import { MaterialIcons } from '@expo/vector-icons';
 import Card from '../../shared/card';
@@ -12,37 +12,12 @@ import config from '../../config';
 
 export default function Home({ navigation }) {
   const [modalLandlordOpen, setModalLandlordOpen] = useState(false);
-  const [modalOpen2, setModalOpen2] = useState(true);
-  const [modalOpen3, setModalOpen3] = useState(false);
-  const [reviews, setReviews] = useState([]);
-  const [userState, setuserState] = useState(false);
-  const [postNumber, setPostNumber] = useState("");
-  const [userEmail, setUserEmail] = useState("");
+  const [userState, setuserState] = useState(navigation.getParam("userState"));
+  const [userEmail, setUserEmail] = useState(navigation.getParam("email"));
+  const [postNumber, setPostNumber] = useState(navigation.getParam("postNumber"));
+  const [reviews, setReviews] = useState(navigation.getParam("reviews"));
+
   const IP = config.IP;
-
-  // useEffect(() => {
-  //   setModalOpen2(!modalOpen2);
-  // },[userState])
-
-
-  const changeEmail = (email) => {
-    setUserEmail(email);
-  }
-
-  const storeUser = (message) => {
-    setuserState(message);
-  }
-
-  const changeReviews = (review) => {
-      setReviews((currentReviews) => {
-        return currentReviews ? [...currentReviews,review] : [review] 
-      })
-  }
-
-  const changePostNumber = (postNum) => {
-    setPostNumber(postNum);
-  }
-
 
   const addReview = async (review) => {
     review.key = userState.user.userDetails.userKey + postNumber;
@@ -158,24 +133,6 @@ export default function Home({ navigation }) {
     }
   }
 
-  // modals
-  const modalOff2 = () => {
-    setModalOpen2(false);
-  }
-
-  const modalOn2 = () => {
-    setModalOpen2(true);
-    setReviews([]);
-  }
-
-  const modalOff3 = () => {
-    setModalOpen3(false);
-  }
-
-  const modalOn3 = () => {
-    setModalOpen3(true);
-  }
-
   return (
     <View style={globalStyles.container}>
   
@@ -191,20 +148,6 @@ export default function Home({ navigation }) {
               <ReviewForm addReview={addReview}/>
             </ScrollView>
         </TouchableWithoutFeedback>
-      </Modal>
-
-      <Modal visible={modalOpen2} animationType='slide'>
-        <Welcome modalFunction={{off: modalOff2, on: modalOn3, storeUser, changeEmail, changeReviews, changePostNumber}} />
-      </Modal>
-
-      <Modal visible={modalOpen3} animationType='slide'>
-        <MaterialIcons 
-          name='close'
-          size={24} 
-          style={{...styles.modalToggle, ...styles.modalClose}} 
-          onPress={() => {setModalOpen3(false); setModalOpen2(true);}} 
-        />
-        <Register modalFunction={{off: modalOff3, login: modalOn2}}/>
       </Modal>
 
       <View style={{flex: 1, justifyContent: "center"}}>
@@ -229,7 +172,14 @@ export default function Home({ navigation }) {
       <View style={{justifyContent: "flex-end", margin: 10}}>
           <FlatButton 
             text = "Logout"
-            onPress = {modalOn2}
+            onPress = {() => {
+              Alert.alert("Log out", "Are you sure you want to log out?",
+                [
+                  {text: "Yes", onPress: () => navigation.navigate("Login")},
+                  {text: "No",}
+                ]
+              )
+              }}
           />
       </View>
     </View>

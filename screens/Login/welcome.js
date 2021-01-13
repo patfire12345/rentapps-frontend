@@ -18,6 +18,11 @@ const IP = config.IP;
 
 export default function Welcome({modalFunction}) {
 
+    const [userState,setUserState] = useState();
+    const [email,setEmail] = useState();
+    const [postNumber,setpostNumber] = useState();
+    const [reviews,setReviews] = useState();
+
     const verifyLogin = async (email,password) => {
         try {
             const response = await fetch(IP+"/login", 

@@ -1,9 +1,9 @@
 import React from 'react';
 import { createStackNavigator } from 'react-navigation-stack';
-import Welcome from '../screens/Login/welcome';
+import Login from '../screens/Login/welcome';
 import Home from '../screens/Home/home';
 import ReviewDetails from '../screens/Advertisements/reviewDetails';
-// import Register from "../screens/register";
+import Register from "../screens/Login/register";
 import About from "../screens/Tenants/about";
 import AboutForLandlord from "../screens/Tenants/aboutForLandlord";
 import WhatIs from "../screens/Home/whatIs";
@@ -11,6 +11,7 @@ import Header from '../shared/header';
 import {globalStyles} from '../styles/global';
 import ReviewDetailsApplication from '../screens/Advertisements/reviewDetailsApplication';
 import Listings from '../screens/Advertisements/listings';
+
 
 
 
@@ -23,6 +24,24 @@ const screens = {
                     headerTitle: () => <Header navigation={navigation} title='Welcome'/>,
                 }
         }
+    },
+    Login: {
+        screen: Login,
+        navigationOptions:
+            ({navigation}) => {
+                return {
+                    headerTitle: () => <Header navigation={navigation} title='Login'/>,
+                }
+            }
+    },
+    Register: {
+        screen: Register,
+        navigationOptions:
+            ({navigation}) => {
+                return {
+                    headerTitle: () => <Header navigation={navigation} title='Register'/>,
+                }
+            }
     },
     ReviewDetails: {
         screen: ReviewDetails,

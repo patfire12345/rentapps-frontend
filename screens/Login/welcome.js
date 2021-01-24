@@ -80,7 +80,7 @@ export default function Welcome({navigation}) {
                         {(props) => (
                             <View style={globalStyles.container}>
                                 <View style={{flex: 1, justifyContent: "center"}}>
-                                    <Text style={[globalStyles.titleText]}>RentApps</Text>
+                                    <Text style={[globalStyles.titleText]}>RapidRent</Text>
 
                                     <View style={{top: 30}}>
                                         <TextInput 
